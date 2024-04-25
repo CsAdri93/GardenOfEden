@@ -1,0 +1,110 @@
+﻿using fruitwebshop2._0.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace fruitwebshop2._0.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FruitController : ControllerBase
+    {
+        [HttpGet]
+        
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                using (var context = new FruitwebshopContext())
+                {
+                    var fruits = await context.Fruits.ToListAsync();
+                    return Ok(fruits);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        [Authorize]
+        public IActionResult GetId(int id)
+        {
+            var context = new FruitwebshopContext();
+            try
+            {
+                var response = context.Fruits.FirstOrDefault(f => f.FruitId == id);
+                if (response != null)
+                {
+                    return BadRequest("Nincs ilyen gyümölcs.");
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Post(Fruit fruit)
+        {
+            var context = new FruitwebshopContext();
+            try
+            {
+                context.Add(fruit);
+                context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK, "Sikeres adattárolás");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+        }
+
+
+        [HttpPut]
+        [Authorize]
+        public IActionResult Put(Fruit fruit)
+        {
+            var context = new FruitwebshopContext();
+            try
+            {
+                context.Update(fruit);
+                context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK, "Sikeres módosítás.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            var context = new FruitwebshopContext();
+            try
+            {
+                Fruit fruit = new Fruit();
+                fruit.FruitId = id;
+                context.Remove(fruit);
+                context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK, "Sikeres törlés.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+        }
+
+    }
+}

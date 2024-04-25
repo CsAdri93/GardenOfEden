@@ -1,0 +1,96 @@
+.login-registration-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffb648;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+  border-radius: 50px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.tab {
+  border: none;
+  background-color: transparent;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  border-bottom: 2px solid #000;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  background-color: #ffefba;
+  color: #ff7829;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff8b2c;;
+  color: #ccc;
+}
+
+.white-color {
+  color: white;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.bg-orange {
+  background-color: #ffab2c;
+}
+
+.img-up {
+  background-image: url(img/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
